@@ -1,2 +1,3 @@
-# netflix_data
-Merge imdb database on my personal Netflix data
+Hi everybody !
+
+This repository will use the imdb database of movie and series titles to merge it onto my personal Netflix history.
