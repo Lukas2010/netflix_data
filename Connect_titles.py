@@ -17,7 +17,9 @@ import timeit
 
 os.getcwd()
 
-os.chdir("/Users/lukas/Dropbox/Datalatte/Movie_titles")
+working_directoy = ""
+
+os.chdir(working_directory)
 
 # Get and import files in workingdirectoy
 
