@@ -1,0 +1,63 @@
+
+## New way to extract the netflix titles from csv
+
+import pandas as pd
+import os
+
+# Change working directoy
+
+os.getcwd()
+
+os.chdir("") # Directory with Netflix data
+
+# Get and import files in workingdirectoy
+
+file_name = os.listdir()[0]
+
+lukas_netflix = pd.read_csv(file_name)
+
+# Extract series or movies name and episode titles
+
+def extract_titles(netflix_data):
+    
+    # Add Episode_title column for extracted episode titles
+
+    episode_title = str()
+
+    lukas_netflix["episode_title"] = episode_title
+
+    for i in range(len(netflix_data)):
+    
+        sequence = netflix_data.iloc[i,0]
+    
+        if sequence.count(":") == 2:
+        
+            series_title = sequence[0:sequence.index(":")]
+        
+            netflix_data.iloc[i,0] = series_title
+        
+            episode_title =  sequence[sequence.rfind(":")+2:]
+        
+            netflix_data.iloc[i,2] = episode_title
+        
+        elif sequence.count(":") == 3:
+        
+            first_sequence = sequence[0:sequence.index(":")]
+
+            second_sequence = sequence[len(first_sequence)+1:]
+
+            series_title = second_sequence[1:second_sequence.index(":")]
+        
+            netflix_data.iloc[i,0] = series_title
+        
+            episode_title =  sequence[sequence.rfind(":")+2:]
+        
+            netflix_data.iloc[i,2] = episode_title
+        
+        else:
+        
+            netflix_data.iloc[i,2] = "-" 
+                
+    return netflix_data
+        
+data = extract_titles(lukas_netflix)    
